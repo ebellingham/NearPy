@@ -200,7 +200,7 @@ class Engine(object):
         if filters:
             filter_input = candidates
             for fetch_vector_filter in filters:
-                filter_input = fetch_vector_filter.filter_vectors(filter_input, lemma)
+                filter_input = fetch_vector_filter.filter_vectors(filter_input, lemma=lemma)
             return filter_input
         else:
             return candidates
