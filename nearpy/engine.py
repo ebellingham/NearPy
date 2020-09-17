@@ -162,7 +162,8 @@ class Engine(object):
         # Apply fetch vector filters if specified and return filtered list
         if fetch_vector_filters:
             candidates = self._apply_filter(fetch_vector_filters,
-                                            candidates)
+                                            candidates,
+                                            lemma=lemma)
 
         # Apply distance implementation if specified
         if not distance:
@@ -172,7 +173,9 @@ class Engine(object):
         # Apply vector filters if specified and return filtered list
         if not vector_filters:
             vector_filters = self.vector_filters
-        candidates = self._apply_filter(vector_filters, candidates)
+        candidates = self._apply_filter(vector_filters, 
+                                        candidates,
+                                        lemma=lemma)
 
         # If there is no vector filter, just return list of candidates
         return candidates
