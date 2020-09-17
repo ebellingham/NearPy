@@ -200,13 +200,7 @@ class Engine(object):
         if filters:
             filter_input = candidates
             for fetch_vector_filter in filters:
-                if type(fetch_vector_filter) == LemmaFilter and lemma:
-                    print('Filtering with lemma')
-                    filter_input = fetch_vector_filter.filter_vectors(filter_input, lemma)
-                else:
-                    print(type(fetch_vector_filter)
-                    filter_input = fetch_vector_filter.filter_vectors(filter_input, lemma)
-
+                filter_input = fetch_vector_filter.filter_vectors(filter_input, lemma)
             return filter_input
         else:
             return candidates
