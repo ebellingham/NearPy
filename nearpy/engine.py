@@ -27,7 +27,7 @@ import numpy as np
 from nearpy.hashes import RandomBinaryProjections
 from nearpy.hashes import PCABinaryProjections
 from nearpy.hashes import RandomBinaryProjectionTree
-from nearpy.filters import NearestFilter, UniqueFilter
+from nearpy.filters import NearestFilter, UniqueFilter, LemmaFilter
 from nearpy.distances import EuclideanDistance
 from nearpy.distances import CosineDistance
 from nearpy.storage import MemoryStorage, MongoStorage
@@ -146,7 +146,8 @@ class Engine(object):
     def neighbours(self, v,
                    distance=None,
                    fetch_vector_filters=None,
-                   vector_filters=None):
+                   vector_filters=None,
+                   lemma=None):
         """
         Hashes vector v, collects all candidate vectors from the matching
         buckets in storage, applys the (optional) distance function and
@@ -191,12 +192,15 @@ class Engine(object):
         return candidates
 
 
-    def _apply_filter(self, filters, candidates):
+    def _apply_filter(self, filters, candidates, lemma=None):
         """ Apply vector filters if specified and return filtered list """
         if filters:
             filter_input = candidates
             for fetch_vector_filter in filters:
-                filter_input = fetch_vector_filter.filter_vectors(filter_input)
+                if type(fetch_vector_filter) == LemmaFilter and lemma:
+                    filter_input = fetch_vector_filter.filter_vectors(filter_input, lemma)
+                else:
+                    filter_input = fetch_vector_filter.filter_vectors(filter_input)
 
             return filter_input
         else:
