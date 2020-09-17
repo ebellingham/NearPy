@@ -42,7 +42,7 @@ class UniqueFilter(VectorFilter):
     def __init__(self):
         pass
 
-    def filter_vectors(self, input_list):
+    def filter_vectors(self, input_list, lemma=None):
         """
         Returns subset of specified input list.
         """

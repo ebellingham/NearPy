@@ -49,7 +49,7 @@ class VectorFilter(object):
     input list if their filter mechanism does not apply on the input type.
     """
 
-    def filter_vectors(self, input_list):
+    def filter_vectors(self, input_list, lemma=None):
         """
         Returns subset of specified input list.
         """

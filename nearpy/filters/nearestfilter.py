@@ -34,7 +34,7 @@ class NearestFilter(VectorFilter):
         """
         self.N = N
 
-    def filter_vectors(self, input_list):
+    def filter_vectors(self, input_list, lemma=None):
         """
         Returns subset of specified input list.
         """
