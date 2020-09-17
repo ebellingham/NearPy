@@ -205,7 +205,7 @@ class Engine(object):
                     filter_input = fetch_vector_filter.filter_vectors(filter_input, lemma)
                 else:
                     print(type(fetch_vector_filter)
-                    filter_input = fetch_vector_filter.filter_vectors(filter_input)
+                    filter_input = fetch_vector_filter.filter_vectors(filter_input, lemma)
 
             return filter_input
         else:
