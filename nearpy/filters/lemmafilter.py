@@ -27,13 +27,16 @@ class LemmaFilter(VectorFilter):
     def __init__(self):
         pass
 
-    def filter_vectors(self, input_list, lemma):
+    def filter_vectors(self, input_list, lemma=None):
         """
         Returns subset of specified input list.
         """
         unique_dict = {}
         for v in input_list:
             vlemma = v[1].split('_')[0]
-            if vlemma == lemma:
+            if lemma:
+                if vlemma == lemma:
+                    unique_dict[v[1]] = v
+            else:
                 unique_dict[v[1]] = v
         return list(unique_dict.values())
