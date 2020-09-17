@@ -190,7 +190,7 @@ class Engine(object):
                     lshash.hash_name,
                     bucket_key,
                 )
-                #print 'Bucket %s size %d' % (bucket_key, len(bucket_content))
+                print 'Bucket %s size %d' % (bucket_key, len(bucket_content))
                 candidates.extend(bucket_content)
         return candidates
 
